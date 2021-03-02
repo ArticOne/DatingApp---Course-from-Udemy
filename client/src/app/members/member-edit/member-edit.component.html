@@ -4,7 +4,7 @@
   </div>
   <div class="col-8">
     <div *ngIf="editForm.dirty" class="alert alert-info d-flex justify-content-center align-items-center mb-0">
-     <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
+      <strong>Information: </strong> You have made changes. Any unsaved changes will be lost
     </div>
   </div>
   <div class="col-4">
@@ -22,11 +22,11 @@
         </div>
         <div>
           <strong>Last Active:</strong>
-          <p>{{member.lastActive}}</p>
+          <p>{{member.lastActive | timeago}}</p>
         </div>
         <div>
           <strong>Member since:</strong>
-          <p>{{member.created}}</p>
+          <p>{{member.created | date: 'dd MMM yyyy'}}</p>
         </div>
       </div>
       <div class="card-footer">

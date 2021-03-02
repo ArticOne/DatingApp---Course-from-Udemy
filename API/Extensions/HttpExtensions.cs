@@ -11,8 +11,13 @@ namespace API.Extensions
         {
             var paginationHeader = new PaginationHeader(currentPage, totalPages, itemsPerPage, totalItems);
 
-            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader));
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader, options));
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
-         }
+        }
     }
 }

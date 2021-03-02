@@ -22,7 +22,7 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPhotoService, PhotoService>();
-
+            services.AddScoped<LogUserActivity>();
             services.AddDbContext<DataContext>(options => { options.UseSqlite(config.GetConnectionString("DefaultConnection")); });
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
