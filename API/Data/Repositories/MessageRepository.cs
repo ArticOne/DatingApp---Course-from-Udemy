@@ -50,7 +50,7 @@ namespace API.Data.Repositories
             {
                 "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username && u.RecipientDeleted == false),
                 "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username && u.SenderDelete == false),
-                _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null && u.SenderDelete)
+                _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null && u.SenderDelete == false)
             };
 
             return await PagedList<MessageDto>.CreateAsync(query, messageParams.PageNumber, messageParams.PageSize);
@@ -77,6 +77,8 @@ namespace API.Data.Repositories
                 foreach (var message in unreadMessages)
                 {
                     message.DateRead = DateTime.UtcNow;
+                    var m = await _context.Messages.FirstOrDefaultAsync(m => m.Id == message.Id);
+                    m.DateRead = DateTime.UtcNow;
                 }
             }
 

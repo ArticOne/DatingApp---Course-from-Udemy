@@ -50,6 +50,9 @@ export class MessagesComponent implements OnInit {
               this.messages.findIndex((m) => m.id === id),
               1
             );
+            if (this.messages.length === 0) {
+              this.loadMessages();
+            }
           });
         }
       });
